@@ -1,0 +1,240 @@
+{
+  "components": [
+    {
+      "id": "card",
+      "name": "Card",
+      "icon": "card-diamonds",
+      "parameters": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "text",
+          "helpText": "",
+          "typeConfig": null,
+          "localizable": false
+        }
+      ],
+      "useTeamPermissions": true,
+      "slots": [],
+      "titleParameter": "title",
+      "canBeComposition": false,
+      "created": "2024-05-15T17:02:51.071237+00:00",
+      "updated": "2024-05-15T17:02:51.071237+00:00"
+    },
+    {
+      "id": "grid",
+      "name": "Grid",
+      "icon": "view-month",
+      "parameters": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "text",
+          "helpText": "",
+          "typeConfig": null,
+          "localizable": false
+        }
+      ],
+      "useTeamPermissions": true,
+      "slots": [
+        {
+          "id": "elements",
+          "name": "Elements",
+          "allowedComponents": [
+            "card",
+            "$loop"
+          ],
+          "allowAllComponents": false,
+          "inheritAllowedComponents": false,
+          "patternsInAllowedComponents": false
+        }
+      ],
+      "titleParameter": "title",
+      "canBeComposition": false,
+      "created": "2024-05-15T16:41:04.16534+00:00",
+      "updated": "2024-05-15T17:24:47.846117+00:00"
+    },
+    {
+      "id": "page",
+      "name": "Page",
+      "icon": "file-document",
+      "parameters": [],
+      "useTeamPermissions": true,
+      "slots": [
+        {
+          "id": "pageContent",
+          "name": "Page Content",
+          "allowedComponents": [
+            "grid"
+          ],
+          "allowAllComponents": false,
+          "inheritAllowedComponents": false,
+          "patternsInAllowedComponents": false
+        }
+      ],
+      "canBeComposition": true,
+      "created": "2024-05-15T16:40:33.742918+00:00",
+      "updated": "2024-05-15T16:44:20.572675+00:00"
+    }
+  ],
+  "compositions": [
+    {
+      "composition": {
+        "_name": "Home",
+        "_id": "0c5cfeea-bd4f-4833-a14d-d4dcd82629ed",
+        "_slug": "/",
+        "type": "page",
+        "slots": {
+          "pageContent": [
+            {
+              "_id": "867611e9-11da-4699-b542-a7d689d99619",
+              "type": "grid",
+              "slots": {
+                "elements": [
+                  {
+                    "_id": "443a112b-1178-425d-aee6-96855d02ea86",
+                    "type": "$loop",
+                    "slots": {
+                      "body": [
+                        {
+                          "_id": "4e1be361-0ee3-4fe6-89aa-1ab4bc91e0bc",
+                          "type": "card",
+                          "parameters": {
+                            "title": {
+                              "type": "text",
+                              "value": "${#jptr:/Query Simple Entries Content entries Loop Item/entry/fields/title/value}"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "_dataResources": {
+                      "Query Simple Entries Content entries Loop Item": {
+                        "type": "sys-reserved-loop",
+                        "variables": {
+                          "connectedData": "/Query Simple Entries Content/entries"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "title": {
+                  "type": "text",
+                  "value": "Uniform Content"
+                }
+              }
+            },
+            {
+              "_id": "3104e2ec-81c2-4daa-afc7-169c14c574fb",
+              "type": "grid",
+              "slots": {
+                "elements": [
+                  {
+                    "_id": "0401301c-4c5c-4b5c-a2a1-6b386161ff01",
+                    "type": "$loop",
+                    "slots": {
+                      "body": [
+                        {
+                          "_id": "a7a26bec-0549-4664-a3a9-2c2a306e51c3",
+                          "type": "card",
+                          "parameters": {
+                            "title": {
+                              "type": "text",
+                              "value": "${#jptr:/Query Simple Entries Contentful items Loop Item/fields/title}"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "_dataResources": {
+                      "Query Simple Entries Contentful items Loop Item": {
+                        "type": "sys-reserved-loop",
+                        "variables": {
+                          "connectedData": "/Query Simple Entries Contentful/items"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "title": {
+                  "type": "text",
+                  "value": "Contentful"
+                }
+              }
+            }
+          ]
+        },
+        "_dataResources": {
+          "Query Simple Entries Content": {
+            "type": "querySimpleEntries",
+            "variables": {
+              "limit": "${count}",
+              "offset": "${skip}",
+              "search": "",
+              "orderBy": "created_at_ASC",
+              "contentTypes": "simpleEntry"
+            }
+          },
+          "Query Simple Entries Contentful": {
+            "type": "contentful-querySimpleEntries",
+            "variables": {
+              "skip": "${skip}",
+              "limit": "${count}",
+              "order": "sys.createdAt",
+              "locale": "",
+              "filters": "",
+              "keyword": "",
+              "sortOrder": "asc",
+              "searchValue": "",
+              "sortFieldId": "sys.createdAt",
+              "contentTypeId": "simpleEntry",
+              "advancedFilters": "[]",
+              "contentTypeQuery": "content_type=simpleEntry"
+            }
+          }
+        }
+      },
+      "created": "2024-05-15T16:41:28.765995+00:00",
+      "modified": "2024-05-15T17:28:11.356015+00:00",
+      "pattern": false
+    }
+  ],
+  "projectMaps": [
+    {
+      "id": "be5575f8-157a-48ed-a811-09ec978e661d",
+      "name": "Grid Example's Project Map",
+      "baseUrl": "http://localhost:7755",
+      "default": true
+    }
+  ],
+  "projectMapNodes": [
+    {
+      "id": "509becd9-1dfb-47b6-8a6e-a4c67231c5d9",
+      "name": "Home",
+      "order": 500,
+      "path": "/",
+      "type": "composition",
+      "pathSegment": "",
+      "data": {
+        "queryStrings": [
+          {
+            "name": "skip",
+            "value": "0",
+            "helpText": ""
+          },
+          {
+            "name": "count",
+            "value": "6",
+            "helpText": ""
+          }
+        ]
+      },
+      "compositionId": "0c5cfeea-bd4f-4833-a14d-d4dcd82629ed",
+      "projectMapId": "be5575f8-157a-48ed-a811-09ec978e661d"
+    }
+  ]
+}
