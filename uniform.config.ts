@@ -8,6 +8,9 @@ const config: CLIConfiguration = {
       component: {},
       projectMapDefinition: {},
       projectMapNode: {},
+      contentType: {},
+      entry: {}, 
+      dataType: {},
     }
   }
 };
